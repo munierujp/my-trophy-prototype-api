@@ -2,6 +2,7 @@ package config
 
 import (
 	"os"
+	"strings"
 )
 
 // Config is config
@@ -11,7 +12,7 @@ type Config struct {
 	DBUserName   string
 	DBPassword   string
 	PORT         string
-	AllowOrigins string
+	AllowOrigins []string
 }
 
 // NewConfig is constructor for Config
@@ -22,7 +23,7 @@ func NewConfig() Config {
 		DBUserName:   os.Getenv("DB_USER_NAME"),
 		DBPassword:   os.Getenv("DB_PASSWORD"),
 		PORT:         os.Getenv("PORT"),
-		AllowOrigins: os.Getenv("ALLOW_ORIGINS"),
+		AllowOrigins: strings.Split(os.Getenv("ALLOW_ORIGINS"), ","),
 	}
 	return conf
 }
