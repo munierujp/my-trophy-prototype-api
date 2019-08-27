@@ -120,3 +120,30 @@ $ curl localhost:5000/trophies/?user_id=1
   }
 ]
 ```
+
+
+### GET /trophies/:trophy_id
+#### Request
+<table>
+<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><td>:trophy_id</td><td>number</td><td></td></tr>
+</table>
+
+#### Response
+`Trophy`
+
+#### Example
+```sh
+$ curl localhost:5000/trophies/1
+```
+
+```json
+{
+  "id": 1,
+  "created_at": "2019-08-27T13:04:13+09:00",
+  "updated_at": "2019-08-27T13:04:13+09:00",
+  "title": "誕生",
+  "description": "この世に生を受けた。",
+  "user_id": 1
+}
+```
