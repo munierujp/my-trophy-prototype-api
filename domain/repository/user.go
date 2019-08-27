@@ -7,5 +7,4 @@ import (
 // UserRepository is repository interface for User
 type UserRepository interface {
 	FindByID(uint) (*model.User, error)
-	FindByEmail(string) (*model.User, error)
 }
