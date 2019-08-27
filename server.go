@@ -36,6 +36,7 @@ func main() {
 	// Bind routes
 	e.GET("/users/", h.FindUsers)
 	e.GET("/users/:id", h.FindUserByID)
+	e.GET("/trophies/", h.FindTrophies)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":" + c.PORT))
