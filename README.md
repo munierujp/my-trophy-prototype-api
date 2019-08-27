@@ -1,6 +1,12 @@
 # my-trophy-prototype-api
 API of My Trophy Prototype
 
+## Prepare
+### Add Firebase secret key file
+```sh
+$ mv /path/to/file firebase_secret_key.json
+```
+
 ## Usage
 ```sh
 $ export DB_HOST=localhost
