@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+  <title>my-trophy-prototype-api</title>
+  <style>
+  #url {
+    width: 100%;
+    max-width: 600px;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <header id="header">
+      <h1>my-trophy-prototype-api</h1>
+    </header>
+    <main id="main">
+      <div v-if="isLoading">
+        <span>Now loading...</span>
+      </div>
+      <div v-else>
+        <div v-if="isSignedIn">
+          <div>
+            <span>You are signed in as {{ user.displayName }} ({{ user.email }}).</span>
+          </div>
+          <div>
+            <button
+              :disabled="isLoading"
+              @click="signOut"
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
+        <div v-else>
+          <div>
+            <span>You are not signed in.</span>
+          </div>
+          <div>
+            <button
+              :disabled="isLoading"
+              @click="signIn"
+            >
+              Sign in with Google
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div>
+        <div>
+          <select v-model="method">
+            <option>GET</option>
+          </select>
+        </div>
+        <div>
+          <input
+            id="url"
+            type="text"
+            v-model="url">
+        </div>
+      </div>
+      <div>
+        <button
+          :disabled="isLoading"
+          @click="sendRequest"
+        >
+          Send
+        </button>
+      </div>
+      <hr>
+      <div>
+        <span> {{ response }}</zspan>
+      </div>
+    </main>
+  </div>
+  <script>
+  (function () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyBo5ETZ220TnSk6J0aKi_6iFFuXSFAdYYM',
+      authDomain: 'my-trophy-prototype.firebaseapp.com',
+      databaseURL: 'https://my-trophy-prototype.firebaseio.com',
+      projectId: 'my-trophy-prototype',
+      storageBucket: '',
+      messagingSenderId: '514630523125',
+      appId: '1:514630523125:web:43937b95b3e2a3c2'
+    })
+
+    const JWT = 'jwt'
+
+    new Vue({
+      el: '#app',
+      data () {
+        return {
+          isLoading: true,
+          isSignedIn: false,
+          user: {},
+          method: 'GET',
+          url: '',
+          response: ''
+        }
+      },
+      mounted () {
+        firebase.auth().onAuthStateChanged((user) => {
+          this.isLoading = false
+          if (user) {
+            this.isSignedIn = true
+            this.user = user
+          } else {
+            this.isSignedIn = false
+            this.user = {}
+          }
+        })
+      },
+      methods: {
+        signIn () {
+          const provider = new firebase.auth.GoogleAuthProvider()
+          firebase.auth().signInWithPopup(provider).then((res) => {
+            res.user.getIdToken().then((idToken) => {
+              localStorage.setItem(JWT, idToken.toString())
+            })
+          })
+        },
+        signOut () {
+          firebase.auth().signOut().then(() => {
+            localStorage.removeItem(JWT)
+          })
+        },
+        async sendRequest () {
+          const jwt = localStorage.getItem(JWT)
+          const headers = jwt ? {
+            Authorization: `Bearer ${jwt}`
+          } : {}
+          const response = await fetch(this.url, {
+            method: this.method,
+            headers
+          })
+          const text = await response.text()
+          this.response = text
+        }
+      }
+    })
+  })()
+  </script>
+</body>
+
+</html>

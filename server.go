@@ -34,6 +34,7 @@ func main() {
 	h := &handler.Handler{DB: db}
 
 	// Bind routes
+	e.Static("/demo", "public/demo")
 	e.GET("/users/", h.FindUsers)
 	e.GET("/users/:id", h.FindUserByID)
 	e.GET("/trophies/", h.FindTrophies)
