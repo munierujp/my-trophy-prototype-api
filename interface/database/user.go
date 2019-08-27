@@ -25,12 +25,3 @@ func (repo *UserRepository) FindByID(id uint) (*model.User, error) {
 	}
 	return &user, nil
 }
-
-// FindByEmail returns user matches to email
-func (repo *UserRepository) FindByEmail(email string) (*model.User, error) {
-	var user model.User
-	if err := repo.db.Where(&model.User{Email: email}).First(&user).Error; err != nil {
-		return nil, err
-	}
-	return &user, nil
-}
