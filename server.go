@@ -34,6 +34,7 @@ func main() {
 	h := &handler.Handler{DB: db}
 
 	// Bind routes
+	e.GET("/users/", h.FindUsers)
 	e.GET("/users/:id", h.FindUserByID)
 
 	// Start server
