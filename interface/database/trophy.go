@@ -25,3 +25,12 @@ func (repo *TrophyRepository) Find(query *model.Trophy) ([]model.Trophy, error) 
 	}
 	return trophies, nil
 }
+
+// FindByID returns trophy matches to id
+func (repo *TrophyRepository) FindByID(id uint) (*model.Trophy, error) {
+	var trophy model.Trophy
+	if err := repo.db.First(&trophy, id).Error; err != nil {
+		return nil, err
+	}
+	return &trophy, nil
+}

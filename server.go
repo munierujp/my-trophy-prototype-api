@@ -37,6 +37,7 @@ func main() {
 	e.GET("/users/", h.FindUsers)
 	e.GET("/users/:id", h.FindUserByID)
 	e.GET("/trophies/", h.FindTrophies)
+	e.GET("/trophies/:id", h.FindTrophyByID)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":" + c.PORT))

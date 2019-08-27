@@ -40,3 +40,28 @@ func (h *Handler) FindTrophies(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, trophies)
 }
+
+func (h *Handler) FindTrophyByID(c echo.Context) error {
+	errorResponse := func(code int, title string) error {
+		problem := response.Problem{
+			Type:  "https://github.com/munierujp/my-trophy-prototype-api/blob/master/handler/trophy.go",
+			Title: title,
+		}
+		c.Response().Header().Set(echo.HeaderContentType, "application/problem+json")
+		c.Response().WriteHeader(code)
+		return json.NewEncoder(c.Response()).Encode(problem)
+	}
+
+	id, err := modules.Atouint(c.Param("id"))
+	if err != nil {
+		return errorResponse(http.StatusBadRequest, "Invalid ID")
+	}
+
+	trophyRepo := database.NewTrophyRepository(h.DB)
+	trophy, err := trophyRepo.FindByID(id)
+	if err != nil {
+		return errorResponse(http.StatusBadRequest, "Not found trophy")
+	}
+
+	return c.JSON(http.StatusOK, trophy)
+}

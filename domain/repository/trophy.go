@@ -7,4 +7,5 @@ import (
 // TrophyRepository is repository interface for Trophy
 type TrophyRepository interface {
 	Find(*model.Trophy) ([]model.Trophy, error)
+	FindByID(uint) (*model.Trophy, error)
 }
