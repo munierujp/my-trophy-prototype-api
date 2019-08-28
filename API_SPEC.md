@@ -59,11 +59,11 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 ]
 ```
 
-### GET /users/:user_id
+### GET /users/:id
 #### Request
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
-<tr><td>:user_id</td><td>number</td><td></td></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
@@ -121,12 +121,11 @@ $ curl localhost:5000/trophies/?user_id=1
 ]
 ```
 
-
-### GET /trophies/:trophy_id
+### GET /trophies/:id
 #### Request
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
-<tr><td>:trophy_id</td><td>number</td><td></td></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
@@ -146,4 +145,19 @@ $ curl localhost:5000/trophies/1
   "description": "この世に生を受けた。",
   "user_id": 1
 }
+```
+
+### DELETE /trophies/:id
+#### Request
+<table>
+<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
+</table>
+
+#### Response
+None
+
+#### Example
+```sh
+$ curl -X DELETE  -H 'Authorization:Bearer $JWT' localhost:5000/trophies/1
 ```
