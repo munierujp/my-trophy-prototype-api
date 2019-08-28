@@ -43,7 +43,7 @@ func (repo *TrophyRepository) FindByID(id uint) (*model.Trophy, error) {
 	return &trophy, nil
 }
 
-// Delete deletes user matches to id
+// Delete deletes trophy matches to id
 func (repo *TrophyRepository) Delete(id uint) error {
 	trophy := model.Trophy{}
 	trophy.ID = id
