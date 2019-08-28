@@ -37,9 +37,10 @@ func main() {
 	e.Static("/demo", "public/demo")
 	e.GET("/users/", h.FindUsers)
 	e.GET("/users/:id", h.FindUserByID)
-	e.POST("/trophies/", h.CreateTrophy, middleware.Auth())
 	e.GET("/trophies/", h.FindTrophies)
 	e.GET("/trophies/:id", h.FindTrophyByID)
+	e.POST("/trophies/", h.CreateTrophy, middleware.Auth())
+	e.PUT("/trophies/:id", h.UpdateTrophy, middleware.Auth())
 	e.DELETE("/trophies/:id", h.DeleteTrophy, middleware.Auth())
 
 	// Start server
