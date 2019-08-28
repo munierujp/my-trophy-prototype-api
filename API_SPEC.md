@@ -1,6 +1,14 @@
 # API Specification
-## Model
-### User
+## Table of contents
+* [User](#heading-user)
+  * [GET /users/](#heading-user-get-users)
+  * [GET /users/:id](#heading-user-get-user)
+* [Trophy](#heading-trophy)
+  * [GET /trophies/](#heading-trophy-get-trophies)
+  * [GET /trophies/:id](#heading-trophy-get-trophy)
+  * [DELETE /trophies/:id](#heading-trophy-delete-trophy)
+
+<h2 id="heading-user">User</h2>
 <table>
 <tr><th>Property</th><th>Type</th><th>Format</th></tr>
 <tr><td>id</td><td>number</td><td></td></tr>
@@ -11,20 +19,8 @@
 <tr><td>email</td><td>string</td><td></td></tr>
 </table>
 
-### Trophy
-<table>
-<tr><th>Property</th><th>Type</th><th>Format</th></tr>
-<tr><td>id</td><td>number</td><td></td></tr>
-<tr><td>created_at</td><td>string</td><td>RFC 3339</td></tr>
-<tr><td>updated_at</td><td>string</td><td>RFC 3339</td></tr>
-<tr><td>deleted_at</td><td>string | null</td><td>RFC 3339</td></tr>
-<tr><td>title</td><td>string</td><td></td></tr>
-<tr><td>description</td><td>string</td><td></td></tr>
-<tr><td>user_id</td><td>number</td><td></td></tr>
-</table>
+<h3 id="heading-user-get-users">GET /users/</h3>
 
-## API
-### GET /users/
 #### Request
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
@@ -59,11 +55,12 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 ]
 ```
 
-### GET /users/:user_id
+<h3 id="heading-user-get-user">GET /users/:id</h3>
+
 #### Request
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
-<tr><td>:user_id</td><td>number</td><td></td></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
@@ -84,8 +81,20 @@ $ curl localhost:5000/users/1
 }
 ```
 
+<h2 id="heading-trophy">Trophy</h2>
+<table>
+<tr><th>Property</th><th>Type</th><th>Format</th></tr>
+<tr><td>id</td><td>number</td><td></td></tr>
+<tr><td>created_at</td><td>string</td><td>RFC 3339</td></tr>
+<tr><td>updated_at</td><td>string</td><td>RFC 3339</td></tr>
+<tr><td>deleted_at</td><td>string | null</td><td>RFC 3339</td></tr>
+<tr><td>title</td><td>string</td><td></td></tr>
+<tr><td>description</td><td>string</td><td></td></tr>
+<tr><td>user_id</td><td>number</td><td></td></tr>
+</table>
 
-### GET /trophies/
+<h3 id="heading-trophy-get-trophies">GET /trophies/</h3>
+
 #### Request
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
@@ -121,12 +130,12 @@ $ curl localhost:5000/trophies/?user_id=1
 ]
 ```
 
+<h3 id="heading-trophy-get-trophy">GET /trophies/:id</h3>
 
-### GET /trophies/:trophy_id
 #### Request
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
-<tr><td>:trophy_id</td><td>number</td><td></td></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
@@ -146,4 +155,20 @@ $ curl localhost:5000/trophies/1
   "description": "この世に生を受けた。",
   "user_id": 1
 }
+```
+
+<h3 id="heading-trophy-delete-trophy">DELETE /trophies/:id</h3>
+
+#### Request
+<table>
+<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
+</table>
+
+#### Response
+None
+
+#### Example
+```sh
+$ curl -X DELETE  -H 'Authorization:Bearer $JWT' localhost:5000/trophies/1
 ```

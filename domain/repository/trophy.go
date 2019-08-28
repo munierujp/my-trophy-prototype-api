@@ -8,4 +8,5 @@ import (
 type TrophyRepository interface {
 	Find(*model.Trophy) ([]model.Trophy, error)
 	FindByID(uint) (*model.Trophy, error)
+	Delete(uint) error
 }

@@ -39,6 +39,7 @@ func main() {
 	e.GET("/users/:id", h.FindUserByID)
 	e.GET("/trophies/", h.FindTrophies)
 	e.GET("/trophies/:id", h.FindTrophyByID)
+	e.DELETE("/trophies/:id", h.DeleteTrophy, middleware.Auth())
 
 	// Start server
 	e.Logger.Fatal(e.Start(":" + c.PORT))
