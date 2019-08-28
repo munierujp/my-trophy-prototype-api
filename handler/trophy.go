@@ -8,6 +8,7 @@ import (
 	"my-trophy-prototype-api/modules"
 	"net/http"
 
+	"firebase.google.com/go/auth"
 	"github.com/labstack/echo/v4"
 )
 
@@ -64,4 +65,52 @@ func (h *Handler) FindTrophyByID(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, trophy)
+}
+
+func (h *Handler) DeleteTrophy(c echo.Context) error {
+	errorResponse := func(code int, title string) error {
+		problem := response.Problem{
+			Type:  "https://github.com/munierujp/my-trophy-prototype-api/blob/master/handler/trophy.go",
+			Title: title,
+		}
+		c.Response().Header().Set(echo.HeaderContentType, "application/problem+json")
+		c.Response().WriteHeader(code)
+		return json.NewEncoder(c.Response()).Encode(problem)
+	}
+
+	jwt := c.Get("jwt").(*auth.Token)
+	claims := jwt.Claims
+	email, ok := claims["email"].(string)
+	if !ok {
+		return errorResponse(http.StatusBadRequest, "Invalid token")
+	}
+
+	id, err := modules.Atouint(c.Param("id"))
+	if err != nil {
+		return errorResponse(http.StatusBadRequest, "Invalid ID")
+	}
+
+	trophyRepo := database.NewTrophyRepository(h.DB)
+	trophy, err := trophyRepo.FindByID(id)
+	if err != nil {
+		return errorResponse(http.StatusBadRequest, "Not found trophy")
+	}
+
+	userRepo := database.NewUserRepository(h.DB)
+	query := &model.User{Email: email}
+	users, err := userRepo.Find(query)
+	if err != nil || len(users) == 0 {
+		return errorResponse(http.StatusBadRequest, "Not found user")
+	}
+	user := users[0]
+
+	if trophy.UserID != user.ID {
+		return errorResponse(http.StatusBadRequest, "You do'nt have permission")
+	}
+
+	if err := trophyRepo.Delete(id); err != nil {
+		return errorResponse(http.StatusBadRequest, "Failed to delete")
+	}
+
+	return c.NoContent(http.StatusNoContent)
 }
