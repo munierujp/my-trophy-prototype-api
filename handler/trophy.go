@@ -12,6 +12,59 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+type TrophyRequest struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
+}
+
+func (h *Handler) CreateTrophy(c echo.Context) error {
+	errorResponse := func(code int, title string) error {
+		problem := response.Problem{
+			Type:  "https://github.com/munierujp/my-trophy-prototype-api/blob/master/handler/trophy.go",
+			Title: title,
+		}
+		c.Response().Header().Set(echo.HeaderContentType, "application/problem+json")
+		c.Response().WriteHeader(code)
+		return json.NewEncoder(c.Response()).Encode(problem)
+	}
+
+	jwt := c.Get("jwt").(*auth.Token)
+	claims := jwt.Claims
+	email, ok := claims["email"].(string)
+	if !ok {
+		return errorResponse(http.StatusBadRequest, "Invalid token")
+	}
+
+	userRepo := database.NewUserRepository(h.DB)
+	query := &model.User{Email: email}
+	users, err := userRepo.Find(query)
+	if err != nil || len(users) == 0 {
+		return errorResponse(http.StatusBadRequest, "Not found user")
+	}
+	user := users[0]
+
+	req := new(TrophyRequest)
+	if err := c.Bind(req); err != nil {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
+	if req.Title == "" {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
+
+	trophy := &model.Trophy{
+		Title:       req.Title,
+		Description: req.Description,
+		UserID:      user.ID,
+	}
+
+	trophyRepo := database.NewTrophyRepository(h.DB)
+	if err := trophyRepo.Create(trophy); err != nil {
+		return errorResponse(http.StatusBadRequest, "Failed to create")
+	}
+
+	return c.NoContent(http.StatusCreated)
+}
+
 func (h *Handler) FindTrophies(c echo.Context) error {
 	errorResponse := func(code int, title string) error {
 		problem := response.Problem{

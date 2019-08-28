@@ -17,6 +17,14 @@ func NewTrophyRepository(db *gorm.DB) repository.TrophyRepository {
 	return &TrophyRepository{db}
 }
 
+// Create creates new trophy
+func (repo *TrophyRepository) Create(trophy *model.Trophy) error {
+	if err := repo.db.Create(&trophy).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 // Find returns trophies match to query
 func (repo *TrophyRepository) Find(query *model.Trophy) ([]model.Trophy, error) {
 	trophies := []model.Trophy{}
