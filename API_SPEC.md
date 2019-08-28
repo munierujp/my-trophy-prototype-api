@@ -6,7 +6,7 @@
 * [Trophy](#heading-trophy)
   * [GET /trophies/](#heading-trophy-get-trophies)
   * [GET /trophies/:id](#heading-trophy-get-trophy)
-  * [POST /trophies/](#heading-trophy-post-trophies)
+  * [POST /trophies/](#heading-trophy-post-trophy)
   * [DELETE /trophies/:id](#heading-trophy-delete-trophy)
 
 <h2 id="heading-user">User</h2>
@@ -158,7 +158,7 @@ $ curl localhost:5000/trophies/1
 }
 ```
 
-<h3 id="heading-trophy-post-trophies">POST /trophies/</h3>
+<h3 id="heading-trophy-post-trophy">POST /trophies/</h3>
 
 #### Request
 <table>
