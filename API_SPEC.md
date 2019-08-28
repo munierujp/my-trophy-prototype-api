@@ -4,9 +4,9 @@
   * [GET /users/](#heading-user-get-users)
   * [GET /users/:id](#heading-user-get-user)
 * [Trophy](#heading-trophy)
-  * [POST /trophies/](#heading-trophy-post-trophies)
   * [GET /trophies/](#heading-trophy-get-trophies)
   * [GET /trophies/:id](#heading-trophy-get-trophy)
+  * [POST /trophies/](#heading-trophy-post-trophies)
   * [DELETE /trophies/:id](#heading-trophy-delete-trophy)
 
 <h2 id="heading-user">User</h2>
@@ -94,23 +94,6 @@ $ curl localhost:5000/users/1
 <tr><td>user_id</td><td>number</td><td></td></tr>
 </table>
 
-<h3 id="heading-trophy-post-trophies">POST /trophies/</h3>
-
-#### Request
-<table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
-<tr><td>title</td><td>string</td><td></td></tr>
-<tr><td>description</td><td>string</td><td></td></tr>
-</table>
-
-#### Response
-None
-
-#### Example
-```sh
-$ curl -X POST -H 'Content-Type: application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
-```
-
 <h3 id="heading-trophy-get-trophies">GET /trophies/</h3>
 
 #### Request
@@ -173,6 +156,23 @@ $ curl localhost:5000/trophies/1
   "description": "この世に生を受けた。",
   "user_id": 1
 }
+```
+
+<h3 id="heading-trophy-post-trophies">POST /trophies/</h3>
+
+#### Request
+<table>
+<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><td>title</td><td>string</td><td></td></tr>
+<tr><td>description</td><td>string</td><td></td></tr>
+</table>
+
+#### Response
+None
+
+#### Example
+```sh
+$ curl -X POST -H 'Content-Type: application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
 ```
 
 <h3 id="heading-trophy-delete-trophy">DELETE /trophies/:id</h3>
