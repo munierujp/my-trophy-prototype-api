@@ -9,7 +9,7 @@
   <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
   <title>my-trophy-prototype-api</title>
   <style>
-  #url {
+  #url, #body {
     width: 100%;
     max-width: 600px;
   }
@@ -59,7 +59,7 @@
           <select v-model="method">
             <option
               v-for="method in methods"
-              :value="method.value">
+              :value="method">
               {{ method.label }}
             </option>
           </select>
@@ -68,8 +68,15 @@
           <input
             id="url"
             type="text"
+            placeholder="URL"
             v-model="url">
         </div>
+        <textarea
+          v-if="method.canSendBody"
+          id="body"
+          v-model="body"
+          placeholder="body">
+        </textarea>
       </div>
       <div>
         <button
@@ -97,6 +104,23 @@
       appId: '1:514630523125:web:43937b95b3e2a3c2'
     })
 
+    const HTTP_METHODS = {
+      GET: {
+        value: 'GET',
+        label: 'GET',
+        canSendBody: false
+      },
+      POST: {
+        value: 'POST',
+        label: 'POST',
+        canSendBody: true
+      },
+      DELETE: {
+        value: 'DELETE',
+        label: 'DELETE',
+        canSendBody: true
+      }
+    }
     const JWT = 'jwt'
 
     new Vue({
@@ -107,17 +131,13 @@
           isSignedIn: false,
           user: {},
           methods: [
-            {
-              value: 'GET',
-              label: 'GET'
-            },
-            {
-              value: 'DELETE',
-              label: 'DELETE'
-            }
+            HTTP_METHODS.GET,
+            HTTP_METHODS.POST,
+            HTTP_METHODS.DELETE
           ],
-          method: 'GET',
+          method: HTTP_METHODS.GET,
           url: '',
+          body: '',
           response: ''
         }
       },
@@ -148,14 +168,22 @@
           })
         },
         async sendRequest () {
+          const headers = {}
+          if (this.method.canSendBody) {
+            headers['Content-Type'] = 'application/json'
+          }
           const jwt = localStorage.getItem(JWT)
-          const headers = jwt ? {
-            Authorization: `Bearer ${jwt}`
-          } : {}
-          const response = await fetch(this.url, {
-            method: this.method,
+          if (jwt) {
+            headers['Authorization'] = `Bearer ${jwt}`
+          }
+          const options = {
+            method: this.method.value,
             headers
-          })
+          }
+          if (this.method.canSendBody) {
+            options.body = this.body
+          }
+          const response = await fetch(this.url, options)
           const text = await response.text()
           this.response = text
         }
