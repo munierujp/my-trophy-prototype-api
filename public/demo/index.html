@@ -115,6 +115,11 @@
         label: 'POST',
         canSendBody: true
       },
+      PUT: {
+        value: 'PUT',
+        label: 'PUT',
+        canSendBody: true
+      },
       DELETE: {
         value: 'DELETE',
         label: 'DELETE',
@@ -133,6 +138,7 @@
           methods: [
             HTTP_METHODS.GET,
             HTTP_METHODS.POST,
+            HTTP_METHODS.PUT,
             HTTP_METHODS.DELETE
           ],
           method: HTTP_METHODS.GET,
