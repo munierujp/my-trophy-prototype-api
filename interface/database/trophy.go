@@ -43,6 +43,14 @@ func (repo *TrophyRepository) FindByID(id uint) (*model.Trophy, error) {
 	return &trophy, nil
 }
 
+// Update updates trophy
+func (repo *TrophyRepository) Update(trophy *model.Trophy) error {
+	if err := repo.db.Save(trophy).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 // Delete deletes trophy matches to id
 func (repo *TrophyRepository) Delete(id uint) error {
 	trophy := model.Trophy{}

@@ -9,5 +9,6 @@ type TrophyRepository interface {
 	Create(*model.Trophy) error
 	Find(*model.Trophy) ([]model.Trophy, error)
 	FindByID(uint) (*model.Trophy, error)
+	Update(*model.Trophy) error
 	Delete(uint) error
 }
