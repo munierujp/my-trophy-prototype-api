@@ -215,6 +215,12 @@ $ curl localhost:5000/trophies/1
 <h3 id="heading-trophy-post-trophy">POST /trophies/</h3>
 
 #### Request
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
+|Content-Type|`application/json`|
+
 ##### Body
 <table>
 <tr><th>Property</th><th>Type</th><th>Format</th></tr>
@@ -243,6 +249,12 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
+|Content-Type|`application/json`|
+
 ##### Body
 <table>
 <tr><th>Property</th><th>Type</th><th>Format</th></tr>
@@ -270,6 +282,11 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
+
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
 
 #### Response
 ##### Code
