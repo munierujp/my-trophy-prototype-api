@@ -208,9 +208,6 @@ $ curl localhost:5000/trophies/1
 |201|Success|
 |400|Fail|
 
-##### Body
-None
-
 #### Example
 ```sh
 $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
@@ -239,9 +236,6 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 |204|Success|
 |400|Fail|
 
-##### Body
-None
-
 #### Example
 ```sh
 $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/1
@@ -262,9 +256,6 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 |---|---|
 |204|Success|
 |400|Fail|
-
-##### Body
-None
 
 #### Example
 ```sh
