@@ -3,6 +3,7 @@
 * [Overview](#heading-overview)
   * [Format](#heading-overview-format)
   * [Error Response](#heading-overview-error-response)
+  * [Authentication](#heading-overview-authentication)
 * [User](#heading-user)
   * [GET /users/](#heading-user-get-users)
   * [GET /users/:id](#heading-user-get-user)
@@ -20,6 +21,15 @@ Use JSON as format of request/response.
 <h3 id="heading-overview-error-response">Error Response</h3>
 
 Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
+
+<h3 id="heading-overview-authentication">Authentication</h3>
+
+Some API is using [Firebase Authentication](https://firebase.google.com/docs/auth/) for authenticating.
+To use these, put JWT in Authorization header using the Bearer schema.
+
+```
+Authorization: Bearer <JWT>
+```
 
 <h2 id="heading-user">User</h2>
 <table>
