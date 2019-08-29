@@ -37,6 +37,7 @@ func main() {
 	e.Static("/demo", "public/demo")
 	e.GET("/users/", h.FindUsers)
 	e.GET("/users/:id", h.FindUserByID)
+	e.POST("/users/", h.CreateUser, middleware.Auth())
 	e.GET("/trophies/", h.FindTrophies)
 	e.GET("/trophies/:id", h.FindTrophyByID)
 	e.POST("/trophies/", h.CreateTrophy, middleware.Auth())
