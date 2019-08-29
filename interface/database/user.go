@@ -17,6 +17,14 @@ func NewUserRepository(db *gorm.DB) repository.UserRepository {
 	return &UserRepository{db}
 }
 
+// Create creates new user
+func (repo *UserRepository) Create(user *model.User) error {
+	if err := repo.db.Create(&user).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 // Find returns users match to query
 func (repo *UserRepository) Find(query *model.User) ([]model.User, error) {
 	users := []model.User{}

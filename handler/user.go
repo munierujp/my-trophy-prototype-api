@@ -8,8 +8,50 @@ import (
 	"my-trophy-prototype-api/modules"
 	"net/http"
 
+	"firebase.google.com/go/auth"
 	"github.com/labstack/echo/v4"
 )
+
+func (h *Handler) CreateUser(c echo.Context) error {
+	errorResponse := func(code int, title string) error {
+		problem := response.Problem{
+			Type:  "https://github.com/munierujp/my-trophy-prototype-api/blob/master/handler/user.go",
+			Title: title,
+		}
+		c.Response().Header().Set(echo.HeaderContentType, "application/problem+json")
+		c.Response().WriteHeader(code)
+		return json.NewEncoder(c.Response()).Encode(problem)
+	}
+
+	jwt := c.Get("jwt").(*auth.Token)
+	claims := jwt.Claims
+	name, ok := claims["name"].(string)
+	if !ok {
+		return errorResponse(http.StatusBadRequest, "Invalid token")
+	}
+	email, ok := claims["email"].(string)
+	if !ok {
+		return errorResponse(http.StatusBadRequest, "Invalid token")
+	}
+
+	userRepo := database.NewUserRepository(h.DB)
+	query := &model.User{Email: email}
+	users, _ := userRepo.Find(query)
+	if len(users) > 0 {
+		return errorResponse(http.StatusBadRequest, "Already exists")
+	}
+
+	user := &model.User{
+		Name:  name,
+		Email: email,
+	}
+
+	if err := userRepo.Create(user); err != nil {
+		return errorResponse(http.StatusBadRequest, "Failed to create")
+	}
+
+	return c.NoContent(http.StatusCreated)
+}
 
 func (h *Handler) FindUsers(c echo.Context) error {
 	errorResponse := func(code int, title string) error {

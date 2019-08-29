@@ -7,6 +7,7 @@
 * [User](#heading-user)
   * [GET /users/](#heading-user-get-users)
   * [GET /users/:id](#heading-user-get-user)
+  * [POST /users/](#heading-user-post-user)
 * [Trophy](#heading-trophy)
   * [GET /trophies/](#heading-trophy-get-trophies)
   * [GET /trophies/:id](#heading-trophy-get-trophy)
@@ -118,6 +119,26 @@ $ curl localhost:5000/users/1
   "name": "ムニエル",
   "email": "mail@munieru.jp"
 }
+```
+
+<h3 id="heading-user-post-user">POST /users/</h3>
+
+#### Request
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
+
+#### Response
+##### Code
+|Code|Condition|
+|---|---|
+|201|Success|
+|400|Fail|
+
+#### Example
+```sh
+$ curl -X POST -H "Authorization:Bearer $JWT" localhost:5000/users/
 ```
 
 <h2 id="heading-trophy">Trophy</h2>
