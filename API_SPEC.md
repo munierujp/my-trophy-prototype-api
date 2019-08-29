@@ -172,7 +172,7 @@ None
 
 #### Example
 ```sh
-$ curl -X POST -H 'Content-Type: application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
+$ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
 ```
 
 <h3 id="heading-trophy-delete-trophy">DELETE /trophies/:id</h3>
@@ -188,5 +188,5 @@ None
 
 #### Example
 ```sh
-$ curl -X DELETE  -H 'Authorization:Bearer $JWT' localhost:5000/trophies/1
+$ curl -X DELETE -H "Authorization:Bearer $JWT" localhost:5000/trophies/1
 ```
