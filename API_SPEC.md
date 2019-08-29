@@ -1,5 +1,8 @@
 # API Specification
 ## Table of contents
+* [Overview](#heading-overview)
+  * [Format](#heading-overview-format)
+  * [Error Response](#heading-overview-error-response)
 * [User](#heading-user)
   * [GET /users/](#heading-user-get-users)
   * [GET /users/:id](#heading-user-get-user)
@@ -9,6 +12,14 @@
   * [POST /trophies/](#heading-trophy-post-trophy)
   * [PUT /trophies/:id](#heading-trophy-put-trophy)
   * [DELETE /trophies/:id](#heading-trophy-delete-trophy)
+
+<h2 id="heading-overview">Overview</h2>
+<h3 id="heading-overview-format">Format</h3>
+Use JSON as format of request/response.
+
+<h3 id="heading-overview-error-response">Error Response</h3>
+
+Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
 
 <h2 id="heading-user">User</h2>
 <table>
