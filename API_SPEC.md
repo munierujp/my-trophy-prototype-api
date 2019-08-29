@@ -172,7 +172,7 @@ $ curl localhost:5000/trophies/1
 #### Request
 ##### Body
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>Property</th><th>Type</th><th>Format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
 </table>
@@ -197,7 +197,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 
 ##### Body
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>Property</th><th>Type</th><th>Format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
 </table>
