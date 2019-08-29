@@ -43,7 +43,7 @@ Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
 </table>
 
 #### Response
-#### Code
+###### Code
 |Code|Condition|
 |---|---|
 |200|Success|
@@ -86,7 +86,7 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 </table>
 
 #### Response
-#### Code
+##### Code
 |Code|Condition|
 |---|---|
 |200|Success|
@@ -132,7 +132,7 @@ $ curl localhost:5000/users/1
 </table>
 
 #### Response
-#### Code
+##### Code
 |Code|Condition|
 |---|---|
 |200|Success|
@@ -177,7 +177,7 @@ $ curl localhost:5000/trophies/?user_id=1
 </table>
 
 #### Response
-#### Code
+##### Code
 |Code|Condition|
 |---|---|
 |200|Success|
@@ -213,7 +213,7 @@ $ curl localhost:5000/trophies/1
 </table>
 
 #### Response
-#### Code
+##### Code
 |Code|Condition|
 |---|---|
 |201|Success|
@@ -241,7 +241,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 </table>
 
 #### Response
-#### Code
+##### Code
 |Code|Condition|
 |---|---|
 |204|Success|
@@ -262,7 +262,7 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 </table>
 
 #### Response
-#### Code
+##### Code
 |Code|Condition|
 |---|---|
 |204|Success|
