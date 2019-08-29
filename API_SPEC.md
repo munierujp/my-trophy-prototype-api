@@ -43,7 +43,7 @@ Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
 </table>
 
 #### Response
-###### Code
+##### Code
 |Code|Condition|
 |---|---|
 |200|Success|
