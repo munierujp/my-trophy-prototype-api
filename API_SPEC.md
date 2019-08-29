@@ -24,6 +24,7 @@
 <h3 id="heading-user-get-users">GET /users/</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>id</td><td>number</td><td></td></tr>
@@ -60,6 +61,7 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 <h3 id="heading-user-get-user">GET /users/:id</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
@@ -98,6 +100,7 @@ $ curl localhost:5000/users/1
 <h3 id="heading-trophy-get-trophies">GET /trophies/</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>user_id</td><td>number</td><td></td></tr>
@@ -135,6 +138,7 @@ $ curl localhost:5000/trophies/?user_id=1
 <h3 id="heading-trophy-get-trophy">GET /trophies/:id</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
@@ -162,6 +166,7 @@ $ curl localhost:5000/trophies/1
 <h3 id="heading-trophy-post-trophy">POST /trophies/</h3>
 
 #### Request
+##### Body
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
@@ -203,6 +208,7 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 <h3 id="heading-trophy-delete-trophy">DELETE /trophies/:id</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
