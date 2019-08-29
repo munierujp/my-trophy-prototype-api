@@ -32,6 +32,7 @@
 </table>
 
 #### Response
+##### Body
 Array of `User`
 
 #### Example
@@ -68,6 +69,7 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 </table>
 
 #### Response
+##### Body
 `User`
 
 #### Example
@@ -107,6 +109,7 @@ $ curl localhost:5000/users/1
 </table>
 
 #### Response
+##### Body
 Array of `Trophy`
 
 #### Example
@@ -145,6 +148,7 @@ $ curl localhost:5000/trophies/?user_id=1
 </table>
 
 #### Response
+##### Body
 `Trophy`
 
 #### Example
@@ -174,6 +178,7 @@ $ curl localhost:5000/trophies/1
 </table>
 
 #### Response
+##### Body
 None
 
 #### Example
@@ -198,6 +203,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 </table>
 
 #### Response
+##### Body
 None
 
 #### Example
@@ -215,6 +221,7 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 </table>
 
 #### Response
+##### Body
 None
 
 #### Example
