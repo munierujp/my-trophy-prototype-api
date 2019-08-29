@@ -32,6 +32,12 @@
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
 ##### Body
 Array of `User`
 
@@ -69,6 +75,12 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
 ##### Body
 `User`
 
@@ -109,6 +121,12 @@ $ curl localhost:5000/users/1
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
 ##### Body
 Array of `Trophy`
 
@@ -148,6 +166,12 @@ $ curl localhost:5000/trophies/?user_id=1
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
 ##### Body
 `Trophy`
 
@@ -178,6 +202,12 @@ $ curl localhost:5000/trophies/1
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|201|Success|
+|400|Fail|
+
 ##### Body
 None
 
@@ -203,6 +233,12 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|204|Success|
+|400|Fail|
+
 ##### Body
 None
 
@@ -221,6 +257,12 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|204|Success|
+|400|Fail|
+
 ##### Body
 None
 
