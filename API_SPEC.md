@@ -3,6 +3,7 @@
 * [Overview](#heading-overview)
   * [Format](#heading-overview-format)
   * [Error Response](#heading-overview-error-response)
+  * [Authentication](#heading-overview-authentication)
 * [User](#heading-user)
   * [GET /users/](#heading-user-get-users)
   * [GET /users/:id](#heading-user-get-user)
@@ -20,6 +21,15 @@ Use JSON as format of request/response.
 <h3 id="heading-overview-error-response">Error Response</h3>
 
 Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
+
+<h3 id="heading-overview-authentication">Authentication</h3>
+
+Some API is using [Firebase Authentication](https://firebase.google.com/docs/auth/) for authenticating.
+To use these, put JWT in Authorization header using the Bearer schema.
+
+```
+Authorization: Bearer <JWT>
+```
 
 <h2 id="heading-user">User</h2>
 <table>
@@ -205,6 +215,12 @@ $ curl localhost:5000/trophies/1
 <h3 id="heading-trophy-post-trophy">POST /trophies/</h3>
 
 #### Request
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
+|Content-Type|`application/json`|
+
 ##### Body
 <table>
 <tr><th>Property</th><th>Type</th><th>Format</th></tr>
@@ -233,6 +249,12 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
+|Content-Type|`application/json`|
+
 ##### Body
 <table>
 <tr><th>Property</th><th>Type</th><th>Format</th></tr>
@@ -260,6 +282,11 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
+
+##### Header
+|Name|Value|
+|---|---|
+|Authorization|`Bearer <JWT>`|
 
 #### Response
 ##### Code
