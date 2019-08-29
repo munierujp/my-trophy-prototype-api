@@ -1,13 +1,25 @@
 # API Specification
 ## Table of contents
+* [Overview](#heading-overview)
+  * [Format](#heading-overview-format)
+  * [Error Response](#heading-overview-error-response)
 * [User](#heading-user)
   * [GET /users/](#heading-user-get-users)
   * [GET /users/:id](#heading-user-get-user)
 * [Trophy](#heading-trophy)
   * [GET /trophies/](#heading-trophy-get-trophies)
   * [GET /trophies/:id](#heading-trophy-get-trophy)
-  * [POST /trophies/](#heading-trophy-post-trophies)
+  * [POST /trophies/](#heading-trophy-post-trophy)
+  * [PUT /trophies/:id](#heading-trophy-put-trophy)
   * [DELETE /trophies/:id](#heading-trophy-delete-trophy)
+
+<h2 id="heading-overview">Overview</h2>
+<h3 id="heading-overview-format">Format</h3>
+Use JSON as format of request/response.
+
+<h3 id="heading-overview-error-response">Error Response</h3>
+
+Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
 
 <h2 id="heading-user">User</h2>
 <table>
@@ -23,6 +35,7 @@
 <h3 id="heading-user-get-users">GET /users/</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>id</td><td>number</td><td></td></tr>
@@ -30,6 +43,13 @@
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
+##### Body
 Array of `User`
 
 #### Example
@@ -59,12 +79,20 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 <h3 id="heading-user-get-user">GET /users/:id</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
+##### Body
 `User`
 
 #### Example
@@ -97,12 +125,20 @@ $ curl localhost:5000/users/1
 <h3 id="heading-trophy-get-trophies">GET /trophies/</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>user_id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
+##### Body
 Array of `Trophy`
 
 #### Example
@@ -134,12 +170,20 @@ $ curl localhost:5000/trophies/?user_id=1
 <h3 id="heading-trophy-get-trophy">GET /trophies/:id</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
+#### Code
+|Code|Condition|
+|---|---|
+|200|Success|
+|400|Fail|
+
+##### Body
 `Trophy`
 
 #### Example
@@ -158,35 +202,73 @@ $ curl localhost:5000/trophies/1
 }
 ```
 
-<h3 id="heading-trophy-post-trophies">POST /trophies/</h3>
+<h3 id="heading-trophy-post-trophy">POST /trophies/</h3>
 
 #### Request
+##### Body
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>Property</th><th>Type</th><th>Format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
 </table>
 
 #### Response
-None
+#### Code
+|Code|Condition|
+|---|---|
+|201|Success|
+|400|Fail|
 
 #### Example
 ```sh
-$ curl -X POST -H 'Content-Type: application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
+$ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
+```
+
+<h3 id="heading-trophy-put-trophy">PUT /trophies/:id</h3>
+
+#### Request
+##### URL
+<table>
+<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><td>:id</td><td>number</td><td></td></tr>
+</table>
+
+##### Body
+<table>
+<tr><th>Property</th><th>Type</th><th>Format</th></tr>
+<tr><td>title</td><td>string</td><td></td></tr>
+<tr><td>description</td><td>string</td><td></td></tr>
+</table>
+
+#### Response
+#### Code
+|Code|Condition|
+|---|---|
+|204|Success|
+|400|Fail|
+
+#### Example
+```sh
+$ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/1
 ```
 
 <h3 id="heading-trophy-delete-trophy">DELETE /trophies/:id</h3>
 
 #### Request
+##### URL
 <table>
 <tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
-None
+#### Code
+|Code|Condition|
+|---|---|
+|204|Success|
+|400|Fail|
 
 #### Example
 ```sh
-$ curl -X DELETE  -H 'Authorization:Bearer $JWT' localhost:5000/trophies/1
+$ curl -X DELETE -H "Authorization:Bearer $JWT" localhost:5000/trophies/1
 ```
