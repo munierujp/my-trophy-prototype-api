@@ -127,7 +127,7 @@ $ curl localhost:5000/users/1
 ##### Header
 |name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 
 #### Response
 ##### Code
@@ -239,7 +239,7 @@ $ curl localhost:5000/trophies/1
 ##### Header
 |name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 |Content-Type|`application/json`|
 
 ##### Body
@@ -273,7 +273,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 ##### Header
 |name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 |Content-Type|`application/json`|
 
 ##### Body
@@ -307,7 +307,7 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 ##### Header
 |name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 
 #### Response
 ##### Code
