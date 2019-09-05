@@ -26,15 +26,15 @@ Error response is conforming to [RFC 7807](https://tools.ietf.org/html/rfc7807).
 <h3 id="heading-overview-authentication">Authentication</h3>
 
 Some API is using [Firebase Authentication](https://firebase.google.com/docs/auth/) for authenticating.
-To use these, put JWT in Authorization header using the Bearer schema.
+To use these, put token in Authorization header using the Bearer schema.
 
 ```
-Authorization: Bearer <JWT>
+Authorization: Bearer <token>
 ```
 
 <h2 id="heading-user">User</h2>
 <table>
-<tr><th>Property</th><th>Type</th><th>Format</th></tr>
+<tr><th>property</th><th>type</th><th>format</th></tr>
 <tr><td>id</td><td>number</td><td></td></tr>
 <tr><td>created_at</td><td>string</td><td>RFC 3339</td></tr>
 <tr><td>updated_at</td><td>string</td><td>RFC 3339</td></tr>
@@ -48,14 +48,14 @@ Authorization: Bearer <JWT>
 #### Request
 ##### URL
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>parameter</th><th>type</th><th>format</th></tr>
 <tr><td>id</td><td>number</td><td></td></tr>
 <tr><td>email</td><td>string</td><td></td></tr>
 </table>
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |200|Success|
 |400|Fail|
@@ -92,13 +92,13 @@ $ curl localhost:5000/users/?email=mail@munieru.jp
 #### Request
 ##### URL
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>parameter</th><th>type</th><th>format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |200|Success|
 |400|Fail|
@@ -125,13 +125,13 @@ $ curl localhost:5000/users/1
 
 #### Request
 ##### Header
-|Name|Value|
+|name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |201|Success|
 |400|Fail|
@@ -143,7 +143,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" localhost:5000/users/
 
 <h2 id="heading-trophy">Trophy</h2>
 <table>
-<tr><th>Property</th><th>Type</th><th>Format</th></tr>
+<tr><th>property</th><th>type</th><th>format</th></tr>
 <tr><td>id</td><td>number</td><td></td></tr>
 <tr><td>created_at</td><td>string</td><td>RFC 3339</td></tr>
 <tr><td>updated_at</td><td>string</td><td>RFC 3339</td></tr>
@@ -158,13 +158,13 @@ $ curl -X POST -H "Authorization:Bearer $JWT" localhost:5000/users/
 #### Request
 ##### URL
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>parameter</th><th>type</th><th>format</th></tr>
 <tr><td>user_id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |200|Success|
 |400|Fail|
@@ -203,13 +203,13 @@ $ curl localhost:5000/trophies/?user_id=1
 #### Request
 ##### URL
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>parameter</th><th>type</th><th>format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |200|Success|
 |400|Fail|
@@ -237,21 +237,21 @@ $ curl localhost:5000/trophies/1
 
 #### Request
 ##### Header
-|Name|Value|
+|name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 |Content-Type|`application/json`|
 
 ##### Body
 <table>
-<tr><th>Property</th><th>Type</th><th>Format</th></tr>
+<tr><th>property</th><th>type</th><th>format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
 </table>
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |201|Success|
 |400|Fail|
@@ -266,26 +266,26 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 #### Request
 ##### URL
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>parameter</th><th>type</th><th>format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 ##### Header
-|Name|Value|
+|name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 |Content-Type|`application/json`|
 
 ##### Body
 <table>
-<tr><th>Property</th><th>Type</th><th>Format</th></tr>
+<tr><th>property</th><th>type</th><th>format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
 </table>
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |204|Success|
 |400|Fail|
@@ -300,18 +300,18 @@ $ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' 
 #### Request
 ##### URL
 <table>
-<tr><th>Parameter</th><th>Type</th><th>Format</th></tr>
+<tr><th>parameter</th><th>type</th><th>format</th></tr>
 <tr><td>:id</td><td>number</td><td></td></tr>
 </table>
 
 ##### Header
-|Name|Value|
+|name|value|
 |---|---|
-|Authorization|`Bearer <JWT>`|
+|Authorization|`Bearer <token>`|
 
 #### Response
 ##### Code
-|Code|Condition|
+|code|condition|
 |---|---|
 |204|Success|
 |400|Fail|
