@@ -49,7 +49,6 @@ Authorization: Bearer <token>
 ##### URL
 <table>
 <tr><th>parameter</th><th>type</th><th>format</th></tr>
-<tr><td>id</td><td>number</td><td></td></tr>
 <tr><td>email</td><td>string</td><td></td></tr>
 </table>
 
