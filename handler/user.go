@@ -65,14 +65,6 @@ func (h *Handler) FindUsers(c echo.Context) error {
 	}
 
 	query := &model.User{}
-	id := c.QueryParam("id")
-	if id != "" {
-		if id, err := modules.Atouint(id); err != nil {
-			return errorResponse(http.StatusBadRequest, "Invalid ID")
-		} else {
-			query.ID = id
-		}
-	}
 	email := c.QueryParam("email")
 	if email != "" {
 		query.Email = email
