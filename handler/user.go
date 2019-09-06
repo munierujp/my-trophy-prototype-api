@@ -29,9 +29,15 @@ func (h *Handler) CreateUser(c echo.Context) error {
 	if !ok {
 		return errorResponse(http.StatusBadRequest, "Invalid token")
 	}
+	if name == "" || len(name) > 50 {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
 	email, ok := claims["email"].(string)
 	if !ok {
 		return errorResponse(http.StatusBadRequest, "Invalid token")
+	}
+	if email == "" || len(email) > 256 {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 
 	userRepo := database.NewUserRepository(h.DB)
