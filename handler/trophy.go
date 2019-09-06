@@ -47,13 +47,18 @@ func (h *Handler) CreateTrophy(c echo.Context) error {
 	if err := c.Bind(req); err != nil {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
-	if req.Title == "" {
+	title := req.Title
+	if title == "" || len(title) > 13 {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
+	description := req.Description
+	if len(description) > 280 {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 
 	trophy := &model.Trophy{
-		Title:       req.Title,
-		Description: req.Description,
+		Title:       title,
+		Description: description,
 		UserID:      user.ID,
 	}
 
