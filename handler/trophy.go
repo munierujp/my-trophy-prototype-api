@@ -8,6 +8,7 @@ import (
 	"my-trophy-prototype-api/modules"
 	"my-trophy-prototype-api/types/date"
 	"net/http"
+	"unicode/utf8"
 
 	"firebase.google.com/go/auth"
 	"github.com/labstack/echo/v4"
@@ -50,11 +51,11 @@ func (h *Handler) CreateTrophy(c echo.Context) error {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 	title := req.Title
-	if title == "" || len(title) > 13 {
+	if title == "" || utf8.RuneCountInString(title) > 13 {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 	description := req.Description
-	if len(description) > 280 {
+	if utf8.RuneCountInString(description) > 280 {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 	if req.AchievedOn == "" {

@@ -7,6 +7,7 @@ import (
 	"my-trophy-prototype-api/interface/database"
 	"my-trophy-prototype-api/modules"
 	"net/http"
+	"unicode/utf8"
 
 	"firebase.google.com/go/auth"
 	"github.com/labstack/echo/v4"
@@ -29,14 +30,14 @@ func (h *Handler) CreateUser(c echo.Context) error {
 	if !ok {
 		return errorResponse(http.StatusBadRequest, "Invalid token")
 	}
-	if name == "" || len(name) > 50 {
+	if name == "" || utf8.RuneCountInString(name) > 50 {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 	email, ok := claims["email"].(string)
 	if !ok {
 		return errorResponse(http.StatusBadRequest, "Invalid token")
 	}
-	if email == "" || len(email) > 256 {
+	if email == "" || utf8.RuneCountInString(email) > 256 {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 
