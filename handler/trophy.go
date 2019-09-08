@@ -6,6 +6,7 @@ import (
 	"my-trophy-prototype-api/domain/model/response"
 	"my-trophy-prototype-api/interface/database"
 	"my-trophy-prototype-api/modules"
+	"my-trophy-prototype-api/types/date"
 	"net/http"
 
 	"firebase.google.com/go/auth"
@@ -15,6 +16,7 @@ import (
 type TrophyRequest struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
+	AchievedOn  string `json:"achieved_on"`
 }
 
 func (h *Handler) CreateTrophy(c echo.Context) error {
@@ -55,10 +57,18 @@ func (h *Handler) CreateTrophy(c echo.Context) error {
 	if len(description) > 280 {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
+	if req.AchievedOn == "" {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
+	achievedOn, err := date.Parse(date.RFC3339, req.AchievedOn)
+	if err != nil {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
 
 	trophy := &model.Trophy{
 		Title:       title,
 		Description: description,
+		AchievedOn:  achievedOn,
 		UserID:      user.ID,
 	}
 
@@ -170,12 +180,22 @@ func (h *Handler) UpdateTrophy(c echo.Context) error {
 	if err := c.Bind(req); err != nil {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
-	if req.Title == "" {
+	title := req.Title
+	if title == "" {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
+	description := req.Description
+	if req.AchievedOn == "" {
+		return errorResponse(http.StatusBadRequest, "Invalid request")
+	}
+	achievedOn, err := date.Parse(date.RFC3339, req.AchievedOn)
+	if err != nil {
 		return errorResponse(http.StatusBadRequest, "Invalid request")
 	}
 
-	trophy.Title = req.Title
-	trophy.Description = req.Description
+	trophy.Title = title
+	trophy.Description = description
+	trophy.AchievedOn = achievedOn
 
 	if err := trophyRepo.Update(trophy); err != nil {
 		return errorResponse(http.StatusBadRequest, "Failed to update")

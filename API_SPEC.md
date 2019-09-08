@@ -149,6 +149,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" localhost:5000/users/
 <tr><td>deleted_at</td><td>string | null</td><td>RFC 3339</td></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
+<tr><td>achieved_on</td><td>string</td><td>RFC 3339</td></tr>
 <tr><td>user_id</td><td>number</td><td></td></tr>
 </table>
 
@@ -184,6 +185,7 @@ $ curl localhost:5000/trophies/?user_id=1
     "updated_at": "2019-08-27T13:04:13+09:00",
     "title": "誕生",
     "description": "この世に生を受けた。",
+    "achieved_on": "1994-02-24",
     "user_id": 1
   },
   {
@@ -192,6 +194,7 @@ $ curl localhost:5000/trophies/?user_id=1
     "updated_at": "2019-08-27T13:04:13+09:00",
     "title": "My Trophy作成",
     "description": "My Trophyを作った。",
+    "achieved_on": "2019-09-01",
     "user_id": 1
   }
 ]
@@ -228,6 +231,7 @@ $ curl localhost:5000/trophies/1
   "updated_at": "2019-08-27T13:04:13+09:00",
   "title": "誕生",
   "description": "この世に生を受けた。",
+  "achieved_on": "1994-02-24",
   "user_id": 1
 }
 ```
@@ -246,6 +250,7 @@ $ curl localhost:5000/trophies/1
 <tr><th>property</th><th>type</th><th>format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
+<tr><td>achieved_on</td><td>string</td><td>RFC 3339</td></tr>
 </table>
 
 #### Response
@@ -257,7 +262,7 @@ $ curl localhost:5000/trophies/1
 
 #### Example
 ```sh
-$ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/
+$ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description", "achieved_on": "2006-01-02"}' localhost:5000/trophies/
 ```
 
 <h3 id="heading-trophy-put-trophy">PUT /trophies/:id</h3>
@@ -280,6 +285,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 <tr><th>property</th><th>type</th><th>format</th></tr>
 <tr><td>title</td><td>string</td><td></td></tr>
 <tr><td>description</td><td>string</td><td></td></tr>
+<tr><td>achieved_on</td><td>string</td><td>RFC 3339</td></tr>
 </table>
 
 #### Response
@@ -291,7 +297,7 @@ $ curl -X POST -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json'
 
 #### Example
 ```sh
-$ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description"}' localhost:5000/trophies/1
+$ curl -X PUT -H "Authorization:Bearer $JWT" -H 'Content-Type:application/json' -d '{"title":"My title","description":"My description", "achieved_on": "2006-01-02"}' localhost:5000/trophies/1
 ```
 
 <h3 id="heading-trophy-delete-trophy">DELETE /trophies/:id</h3>
