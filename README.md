@@ -1,24 +1,29 @@
 # my-trophy-prototype-api
+
 API of My Trophy Prototype
 
 ## Prepare
+
 ### Add Firebase secret key file
+
 ```sh
 $ mv /path/to/file firebase_secret_key.json
 ```
 
-## Usage
+### Create run.sh file
+
 ```sh
-$ export DB_HOST=localhost
-$ export DB_PORT=3306
-$ export DB_USER_NAME=user
-$ export DB_PASSWORD=pass
-$ export PORT=5000
-$ export ALLOW_ORIGINS=http://localhost:3000
-$ go run server.go
+$ cp run.example.sh run.sh
 ```
 
-API is available on [localhost:5000](http://localhost:5000)
+Input values to `run.sh` file.
+
+## Usage
+
+```sh
+$ sh ./run.sh
+```
 
 ## API Specification
+
 See [API_SPEC.md](API_SPEC.md)
